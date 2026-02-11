@@ -1,9 +1,10 @@
-import { getSecretFromAWS } from "./utils/SecretsAWS.ts";
-import { getSecretFromRedis, setSecretInRedis } from "./utils/SecretsRedis.ts";
+import { getSecretFromAWS } from "./common/SecretsAWS.ts";
+import { getSecretFromRedis, setSecretInRedis } from "./common/SecretsRedis.ts";
+
 
 
 export async function getSecret(secretName: string): Promise<string> {
-  // 1. Buscar en Redis
+  // 1. Buscar en Redis.
   const cached = await getSecretFromRedis(secretName);
   if (cached) return cached;
 
